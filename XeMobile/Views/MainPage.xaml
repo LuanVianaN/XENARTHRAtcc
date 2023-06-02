@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:XeMobile"
+             x:Class="XeMobile.MainPage"
+             NavigationPage.HasNavigationBar="False">
+    <RelativeLayout>
+        <Image Source="https://i.ibb.co/3pxTrCV/background.png"
+                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}"
+                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}"/>
+
+        <StackLayout Margin="10,5,10,5" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}"
+                                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}">
+            <Label x:Name="MeuLogin" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="Black" TextColor="LightGreen"/>
+            <Button x:Name="Logout" Text="Desconectar" BackgroundColor="Black" TextColor="LightGreen" CornerRadius="10" Clicked="Logout_Clicked"/>
+            <CollectionView x:Name="PhotoCollection">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Span="1" Orientation="Vertical" VerticalItemSpacing="20" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Grid>
+                                <Image Source="{Binding FotoPath}" HorizontalOptions="FillAndExpand" Aspect="AspectFit"></Image>
+                                <Frame Padding="5" CornerRadius="20"   HorizontalOptions="EndAndExpand" VerticalOptions="StartAndExpand" Margin="0,5,5,0">
+                                    <Path Data="M19 24h-14c-1.104 0-2-.896-2-2v-16h18v16c0 1.104-.896 2-2 2zm-7-10.414l3.293-3.293 1.414 1.414-3.293 3.293 3.293 3.293-1.414 1.414-3.293-3.293-3.293 3.293-1.414-1.414 3.293-3.293-3.293-3.293 1.414-1.414 3.293 3.293zm10-8.586h-20v-2h6v-1.5c0-.827.673-1.5 1.5-1.5h5c.825 0 1.5.671 1.5 1.5v1.5h6v2zm-8-3h-4v1h4v-1z"
+                                      Fill="Black" Aspect="Uniform" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="20" WidthRequest="20"/>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="DeleteButtonTapped"></TapGestureRecognizer>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+
+                            </Grid>
+                            <Label Text="{Binding Data}" FontSize="Caption" BackgroundColor="Black" TextColor="LightGreen"></Label>
+                            <Label Text="{Binding Comentario}" FontSize="Subtitle" BackgroundColor="Black" TextColor="LightGreen"></Label>
+                            <Label x:Name="labelat" Text="{Binding Latitude}" FontSize="Caption" BackgroundColor="Black" TextColor="LightGreen"></Label>
+                            <Label x:Name="labelong" Text="{Binding Longitude}" FontSize="Subtitle" BackgroundColor="Black" TextColor="LightGreen"></Label>
+                            <Button Text="Enviar" Clicked="Enviarf_Clicked" BackgroundColor="Black" TextColor="LightGreen" CornerRadius="10"></Button>
+
+                        </StackLayout>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button x:Name="NewPhotoButton" Clicked="NewPhotoButton_Clicked" Text="Nova foto" BackgroundColor="Black" TextColor="LightGreen" CornerRadius="10"></Button>
+        </StackLayout>
+    </RelativeLayout>
+</ContentPage>

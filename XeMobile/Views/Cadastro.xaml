@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XeMobile.Views.Cadastro">
+    <ContentPage.Content>
+        <RelativeLayout>
+
+            <Image Source="https://i.ibb.co/Vwm2X7T/background.png"
+                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}"
+                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}"/>
+
+            <StackLayout RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}"
+                         RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}">
+                
+                <Entry Placeholder="Novo Email" x:Name="novoemailentry"></Entry>
+                <Entry Placeholder="Nova senha" x:Name="novasenhaentry"></Entry>
+                <Button BackgroundColor="Black" TextColor="LightGreen" Text="CADASTRO" Clicked="cadastrobtn_Clicked" x:Name="cadastrobtn" CornerRadius="10"/>
+                
+            </StackLayout>
+        </RelativeLayout>
+    </ContentPage.Content>
+</ContentPage>

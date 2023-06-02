@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XeMobile.Views.Dashboard"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <RelativeLayout>
+            <Image Source="https://i.ibb.co/3pxTrCV/background.png"
+                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}"
+                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}"/>
+
+            <StackLayout RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}"
+                         RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}"
+                         Orientation="Vertical" Margin="20" VerticalOptions="CenterAndExpand">
+                
+                <Entry Placeholder="Email" x:Name="emailentry"></Entry>
+                <Entry Placeholder="Senha" x:Name="senhaentry"></Entry>
+                <Button BackgroundColor="Black" TextColor="LightGreen" Text="LOGIN" Clicked="loginbtn_Clicked" x:Name="cadastrobtn" CornerRadius="10"/>
+                <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="Gray"/>
+                <Button BackgroundColor="Black" TextColor="LightGreen" Text="CADASTRAR" Clicked="cadastrarbtn_Clicked" x:Name="cadastrarbtn" CornerRadius="10"/>
+
+
+            </StackLayout>
+        </RelativeLayout>
+        
+        
+    </ContentPage.Content>
+</ContentPage>
