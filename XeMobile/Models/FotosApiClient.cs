@@ -1,26 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace XeMobile
 {
     public class FotosApiClient
     {
-        private const string apiUrl = "https://seusite.com/api/Fotos"; // Substitua pela URL correta da sua API
+        // primeira api de teste
+        /*private const string apiUrl = "http://10.0.2.2:44342/api/Fotos";
 
         public async Task EnviarLatitudeLongitude(double latitude, double longitude)
         {
             try
             {
-                var fotos = new
+                var data = new Dictionary<string, string>
                 {
-                    Latitude = latitude,
-                    Longitude = longitude
+                    { "Latitude", latitude.ToString() },
+                    { "Longitude", longitude.ToString() }
                 };
 
-                var json = Newtonsoft.Json.JsonConvert.SerializeObject(fotos);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var content = new FormUrlEncodedContent(data);
 
                 using (var httpClient = new HttpClient())
                 {
@@ -43,6 +43,6 @@ namespace XeMobile
                 // Ocorreu uma exceção durante o processo
                 // Lide com a exceção aqui
             }
-        }
+        }*/
     }
 }

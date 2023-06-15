@@ -12,6 +12,7 @@ namespace XeMobile.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Dashboard : ContentPage
     {
+        //Login pelo firebase
         public string WebApiKey = "AIzaSyCJtd6ZalAdrELxM8jsbaTZqtB64zZ3SgI";
 
         public Dashboard()

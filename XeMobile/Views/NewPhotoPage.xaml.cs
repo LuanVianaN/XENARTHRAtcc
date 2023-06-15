@@ -49,6 +49,7 @@ namespace XeMobile
             }
         }
 
+        //Tirar foto
         async Task TakePhotoAsync()
         {
             try
@@ -70,7 +71,7 @@ namespace XeMobile
                 Console.WriteLine($"CapturePhotoAsync THREW: {ex.Message}");
             }
         }
-
+        //Selecionar foto
         async Task PickPhotoAsync()
         {
             try
