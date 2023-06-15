@@ -31,6 +31,8 @@ namespace XeMobile
         {
             InitializeComponent();
 
+            //Continuar logado pelo firebase
+
             if (!string.IsNullOrEmpty(Preferences.Get("MyFirebaseRefreshToken", "")))
             {
                 MainPage = new NavigationPage(new MainPage());

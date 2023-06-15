@@ -17,14 +17,16 @@ namespace XeMobile
 {
     public partial class MainPage : ContentPage
     {
-
+        //api de login com firebase
+        private ApiService apiService;
         public string WebApiKey = "AIzaSyCJtd6ZalAdrELxM8jsbaTZqtB64zZ3SgI";
         public MainPage()
         {
             InitializeComponent();
             GetProfileInformationAndRefreshToken();
+            apiService = new ApiService();
         }
-
+        //Manter o usuario logado
         async private void GetProfileInformationAndRefreshToken()
         {
             var authProvider = new FirebaseAuthProvider(new FirebaseConfig(WebApiKey));
@@ -35,7 +37,7 @@ namespace XeMobile
                 Preferences.Set("MyFirebaseRefreshToken", JsonConvert.SerializeObject(RefreshedContent));
                 MeuLogin.Text = savedfirebaseauth.User.Email;
             }
-            catch 
+            catch
             {
                 await App.Current.MainPage.DisplayAlert("Alerta", "Seu login expirou!", "Ok");
             }
@@ -54,10 +56,10 @@ namespace XeMobile
             PhotoCollection.ItemsSource = null;
             PhotoCollection.ItemsSource = photos;
         }
-
+        //Excluir foto salva
         private async void DeleteButtonTapped(object sender, EventArgs e)
         {
-            var result=await DisplayAlert("Aviso", "Deseja excluir a postagem?", "Sim", "Não");
+            var result = await DisplayAlert("Aviso", "Deseja excluir a postagem?", "Sim", "Não");
 
             var button = sender as Frame;
             var photo = button.BindingContext as Foto;
@@ -71,7 +73,7 @@ namespace XeMobile
                 PhotoCollection.ItemsSource = photos;
             }
         }
-
+        //Desconectar do usuario
         void Logout_Clicked(object sender, EventArgs e)
         {
             Preferences.Remove("MyFirebaseRefreshToken");
@@ -79,45 +81,36 @@ namespace XeMobile
         }
         async private void Enviarf_Clicked(object sender, EventArgs e)
         {
-            var button = sender as Button;
-            var photo = button.BindingContext as Foto;
 
-            double latitude = photo.Latitude;
-            double longitude = photo.Longitude;
+                var apiService = new ApiService();
 
-            string latitudeStr = latitude.ToString();
-            string longitudeStr = longitude.ToString();
-
-            HttpClient client = new HttpClient();
-
-            string apiUrl = "http://localhost:44342/api/Fotos";
-
-            try
-            {
-
-                var data = new Dictionary<string, string>
+            //Teste de api
+                var foto = new FotoT
                 {
-                    { "latitude", latitudeStr },
-                    { "longitude", longitudeStr }
+                    ID_Usuario = 1,
+                    ID_Animal = 1,
+                    Longitude = 1.3f,
+                    Latitude = 2.4f,
+                    ID_Verificado = 0,
+                    Imagem = 1,
+                    OBS = "X1"
                 };
 
-                var formData = new FormUrlEncodedContent(data);
+                var resultado = await apiService.EnviarFoto(foto);
 
-                HttpResponseMessage response = await client.PostAsync(apiUrl, formData);
-
-                if (response.IsSuccessStatusCode)
+                if (resultado)
                 {
-                    await App.Current.MainPage.DisplayAlert("Aviso", "Enviada com sucesso!", "OK");
+                // A foto foi enviada com sucesso
+                await DisplayAlert("Sucesso", "A foto foi enviada com sucesso", "OK");
                 }
                 else
                 {
-                    await App.Current.MainPage.DisplayAlert("Aviso", "Erro!", "OK");
+                // Ocorreu um erro ao enviar a foto
+                await DisplayAlert("Erro", "Ocorreu um erro ao enviar a foto", "OK");
                 }
-            }
-            catch (Exception ex)
-            {
-                await App.Current.MainPage.DisplayAlert("Aviso", "Erro desconhecido!", "OK");
-            }
+            /* 
+             
+            */
         }
     }
 }
